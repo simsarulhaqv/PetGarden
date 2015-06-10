@@ -1,5 +1,5 @@
 # PetGarden
 
-Intelligent Blogging Plants. User interaction through an Android app.
+Intelligent  Plants. User interaction through an Android app.
 
 
