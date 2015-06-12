@@ -2,7 +2,9 @@ import sqlite3
 import serial
 import datetime
 
+# Connecting to database
 con=sqlite3.connect('server.db')
+
 if con:
 	print 'Connected to Data base succesfully'
 else :
