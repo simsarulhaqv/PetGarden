@@ -1,0 +1,9 @@
+img{max-width:100%;
+height:auto;}
+
+body {
+
+	background-image:url("Leaf.jpg");
+	background-size:100%;
+	font-family:"serif";
+}
