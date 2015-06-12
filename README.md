@@ -13,7 +13,7 @@ features :-
   - *Blog daily (Blog implemented in python-django)*
   
 ### How?
- Refer Presentation slide for further details
+ Refer Presentation slide for further details.
  
  
 
