@@ -1,6 +1,5 @@
-import sqlite3    # for accesing sqlite
-import serial     #for serial communication
-import datetime   #for geting system date and time
+import sqlite3
+import serial
 
 con=sqlite3.connect('server.db')
 if con:
@@ -20,21 +19,19 @@ if con.execute(''' CREATE TABLE Datas
 	        	print "Table created succesfully"		
 else:
 	print "Table already exist"
-port=serial.Serial("/dev/ttyACM0",9600) # change according to change in port us "ls /dev/" for this pi numbr 50 has ttyACM0
-                                        # for upper most USB port( this wont work on normal pc's exept rapberyy pi)
+	
+port=serial.Serial("/dev/ttyACM0",9600)
 if port:
 	print "opened port succesfully"
 	while 1:
-		trigtim=datetime.datetime.now().strftime("%H")
-		final=con.execute(''' SELECT COUNT (*) FROM Datas;''')
-		k=con.execute(''' SELECT RTIME FROM Datas WHERE SNO=final ''')
+		k=con.execute(''' SELECT RTIME FROM Datas WHERE SNO=(SELECT MAX(SNO)  FROM Datas)''')
 		
-		if trigtim==7 or trigtim==13 or trigtim==18 :
-			port.write(k) #k is the time which motor should run on the system
-
+		if(k):
+			port.write(k)
 			
+
 		print 'waiting...'
-		rcv=port.readline() #rcv is for recieving data
+		rcv=port.readline()
 		rcv=rcv.strip()
 		print "recieved data :",rcv
 		if len(rcv)>0:
@@ -42,13 +39,11 @@ if port:
 			humidt=int(rcv[3:4])
 			moistr=int(rcv[5:6])
 			lite=int(rcv[7:8]) 
-			wc=int(rcv[9]) #wc is water content
+			wc=int(rcv[9])
 			rtime=datetime.datetime.now()
 			con.execute('''' INSERT INTO Datas
 				(TIME,TEMP,HUMID,MOIST,LIGHT,WATER)
-				VALUES(rtime,temptr,humidt,moistr,lite,wc)
-					)
-				''');# WATER is water content
+				VALUES (?,?,?,?,?,?);''',(rtime,temptr,humidt,moistr,lite,wc))
 			con.commit()
 con.close()
 port.close()			
