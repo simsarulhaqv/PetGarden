@@ -9,7 +9,7 @@ To strengthen Human-Nature relationship.
 Plant Emotion Translator (PET) 
 
 features :- 
-  - *Smart phone application in the user side for monitering plant status*
+  - *Smart phone application in the user side for monitering plant status [PetGarden-android](https://github.com/thomast3/PetGarden-android)*
   - *Blog daily (Blog implemented in python-django)*
   
 ### How?
