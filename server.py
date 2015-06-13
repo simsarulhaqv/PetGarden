@@ -1,6 +1,6 @@
-import sqlite3
-import serial
-import datetime
+import sqlite3    # for accesing sqlite
+import serial     #for serial communication
+import datetime   #for geting system date and time
 
 con=sqlite3.connect('server.db')
 if con:
@@ -21,7 +21,7 @@ if con.execute(''' CREATE TABLE Datas
 else:
 	print "Table already exist"
 port=serial.Serial("/dev/ttyACM0",9600) # change according to change in port us "ls /dev/" for this pi numbr 50 has ttyACM0
-                                        # for upper most USB port
+                                        # for upper most USB port( this wont work on normal pc's exept rapberyy pi)
 if port:
 	print "opened port succesfully"
 	while 1:
