@@ -2,22 +2,24 @@ import sqlite3
 import serial
 import datetime
 
-# Connecting to database
 con=sqlite3.connect('server.db')
-
 if con:
 	print 'Connected to Data base succesfully'
 else :
 	print 'failed Database connection cahnge permission to read and write'
-try: con.execute(''' CREATE TABLE Datas
+if con.execute(''' CREATE TABLE Datas
 	        (SNO INTEGER PRIMARY KEY AUTOINCREMENT,
 	         TIME TEXT,
 	         TEMP INTEGER,
 	         HUMID INTEGER,
 	         MOIST INTEGER,
+	         LIGHT INTEGER,
+	         WATER INTEGER,
 	         RTIME INTEGER
-	        	);''')		
-finally:
+	        	);'''):
+	        	print "Table created succesfully"		
+else:
+	print "Table already exist"
 	print "Table already exist"
 port=serial.Serial("/dev/ttyACM0",9600)
 if port:
@@ -39,10 +41,12 @@ if port:
 			temptr=int(rcv[1:2])
 			humidt=int(rcv[3:4])
 			moistr=int(rcv[5:6])
+			lite=int(rcv[7:8]) 
+			wc=int(rcv[9])
 			rtime=datetime.datetime.now()
 			con.execute('''' INSERT INTO Datas
-				(TIME,TEMP,HUMID,MOIST)
-				VALUES(rtime,temptr,humidt,moistr)
+				(TIME,TEMP,HUMID,MOIST,LIGHT,WATER)
+				VALUES(rtime,temptr,humidt,moistr,lite,wc)
 					)
 				''');
 			con.commit()
