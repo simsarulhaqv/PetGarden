@@ -20,7 +20,6 @@ if con.execute(''' CREATE TABLE Datas
 	        	print "Table created succesfully"		
 else:
 	print "Table already exist"
-	print "Table already exist"
 port=serial.Serial("/dev/ttyACM0",9600)
 if port:
 	print "opened port succesfully"
