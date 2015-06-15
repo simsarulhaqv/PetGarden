@@ -38,12 +38,12 @@ if port:
 		rcv=rcv.strip()
 		print "recieved data :",rcv
 		if len(rcv)>0:
-			temptr=int(rcv[0:1])
-			humidt=int(rcv[2:3])
-			moistr=int(rcv[4:5])
-			lite=int(rcv[6:7]) 
-			srft=int(rcv[8:9]) #surface temp
-			lifm=int(rcv[10:11])   #leaf moisture
+			temptr=int(rcv[0:2])
+			humidt=int(rcv[2:4])
+			moistr=int(rcv[4:6])
+			lite=int(rcv[6:8]) 
+			srft=int(rcv[8:10]) #surface temp
+			lifm=int(rcv[10:12])   #leaf moisture
 
 			rtime=datetime.datetime.now()
 			con.execute('''' INSERT INTO Datas
