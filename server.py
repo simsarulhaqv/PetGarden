@@ -9,7 +9,7 @@ else :
 	print 'failed Database connection cahnge permission to read and write'
 if con.execute(''' CREATE TABLE Datas
 	        (SNO INTEGER PRIMARY KEY AUTOINCREMENT,
-	         TIME TEXT,
+	         TIMES TEXT,
 	         TEMP INTEGER,
 	         HUMID INTEGER,
 	         MOIST INTEGER,
@@ -47,7 +47,7 @@ if port:
 
 			rtime=datetime.datetime.now()
 			con.execute('''' INSERT INTO Datas
-				(TIME,TEMP,HUMID,MOIST,LIGHT,SURFTEMP,LEAFMOIST)
+				(TIMES,TEMP,HUMID,MOIST,LIGHT,SURFTEMP,LEAFMOIST)
 				VALUES (?,?,?,?,?,?,?);''',(rtime,temptr,humidt,moistr,lite,srft,lifm))
 			con.commit()
 con.close()
