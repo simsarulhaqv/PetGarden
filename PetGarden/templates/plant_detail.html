@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+{%for info in plant_info%}
+<h3>Time : {{info.CTIME}}</h3>
+<h5>Temperature : {{info.TEMP}}</h5>
+<h5>Humidity : {{info.HUMID}}</h5>
+<h5>Moisture : {{info.MOIST}}</h5>
+<h5>Light : {{info.LIGHT}}</h5>
+<h5>Surface Temperature : {{info.SURFTEMP}}</h5>
+<h5>Leaf moisture : {{info.LEAFMOIST}}</h5>
+<h5>Rtime : {{info.RTIME}}</h5>
+{% endfor %}
